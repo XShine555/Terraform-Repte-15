@@ -1,0 +1,44 @@
+@baseUrl = https://nbykogdvdl.execute-api.us-east-1.amazonaws.com/prod
+@productId = p-001
+@productName = Manzana
+
+### Create product
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "id": "{{productId}}",
+  "name": "{{productName}}",
+  "price": 1.25,
+  "category": "comida",
+  "type": "fruta",
+  "status": "activo"
+}
+
+### Get product by id
+GET {{baseUrl}}/products/{{productId}}
+
+### List products (limit=5)
+GET {{baseUrl}}/products?limit=5
+
+### List products (next page)
+# Copia el token `next` del response anterior
+GET {{baseUrl}}/products?limit=5&next=PASTE_NEXT_TOKEN
+
+### Search by name
+GET {{baseUrl}}/products?name={{productName}}
+
+### Filter by category and price range
+GET {{baseUrl}}/products?category=comida&min_price=1&max_price=3
+
+### Update product
+PUT {{baseUrl}}/products/{{productId}}
+Content-Type: application/json
+
+{
+  "price": 1.5,
+  "status": "activo"
+}
+
+### Delete product
+DELETE {{baseUrl}}/products/{{productId}}
